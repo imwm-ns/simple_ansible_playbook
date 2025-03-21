@@ -1,0 +1,23 @@
+---
+- name: Get VMs Artifact
+  hosts: localhost
+  gather_facts: no
+  tasks:
+   - name: Get Minimum Artifact
+     setup:
+      gather_subset:
+        - min
+        - hardware
+        - all_ipv4_addresses
+
+   - name: Show total memory 
+     debug:
+      msg: "[INFO] - {{ ansible_hostname}} has {{ ansible_memtotal_mb // 1024 }} GB"
+
+   - name: Show warning if memory is less than 16GB
+     debug:
+      msg: "[WARNING] - {{ ansible_hostname }} has less than 16GB RAM"
+     when: ansible_memtotal_mb < 16384
+
+   - name: Show all ipv4 address
+     debug: var=ansible_default_ipv4
