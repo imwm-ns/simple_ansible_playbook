@@ -8,7 +8,6 @@
       gather_subset:
         - min
         - hardware
-        - all_ipv4_addresses
 
    - name: Show total memory 
      debug:
@@ -18,6 +17,3 @@
      debug:
       msg: "[WARNING] - {{ inventory_hostname }} has less than 16GB RAM"
      when: ansible_memtotal_mb < 16384
-
-   - name: Show all ipv4 address
-     debug: var=ansible_default_ipv4
