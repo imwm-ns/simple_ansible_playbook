@@ -1,6 +1,6 @@
 ---
 - name: Get VMs Artifact
-  hosts: localhost
+  hosts: all 
   gather_facts: no
   tasks:
    - name: Get Minimum Artifact
